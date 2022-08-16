@@ -43,6 +43,7 @@ public class PlayerTest {
     }
 
     @Test
+
     public void shouldThrowRunTimeException(){
         GameStore store = new GameStore();
         Game game = store.publishGame("Call of Duty", "Battle Royale");

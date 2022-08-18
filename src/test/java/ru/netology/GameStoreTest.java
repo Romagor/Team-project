@@ -91,10 +91,75 @@ public class GameStoreTest {
 
         GameStore store = new GameStore();
 
-        store.addPlayTime("Пётр", 1);
+        store.addPlayTime("Пётр", 6);
+        store.addPlayTime("Иван", 5);
 
         String actual = store.getMostPlayer();
         String expected = "Пётр";
         assertEquals(expected, actual);
+    }
+    @Test
+    public void shouldGetMostPlayerEqualsZero() {
+
+        GameStore store = new GameStore();
+        Game game = store.publishGame("Call of duty", "Стратегия");
+
+        store.addPlayTime("Alena", 0);
+
+        String actual = store.getMostPlayer();
+        String expected = null;
+        assertEquals(expected, actual);
+    }
+    @Test
+    public void shouldGetSumPlayedTime() {
+
+        GameStore store = new GameStore();
+
+        store.addPlayTime("Александр", 1);
+        store.addPlayTime("Евгений", 4);
+        store.addPlayTime("Михаил", 2);
+
+        int actual = store.getSumPlayedTime();
+        int expected = 7;
+        assertEquals(expected, actual);
+    }
+    @Test
+    public void shouldReturnZeroGetSumPlayedTime() {
+
+        GameStore store = new GameStore();
+
+        int actual = store.getSumPlayedTime();
+        int expected = 0;
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    public void shouldGetSumZeroPlayedTime() {
+
+        GameStore store = new GameStore();
+
+        store.addPlayTime("Алексей", 0);
+        store.addPlayTime("Иван", 0);
+        store.addPlayTime("Максим", 0);
+
+        int actual = store.getSumPlayedTime();
+        int expected = 0;
+        assertEquals(expected, actual);
+
+    }
+
+    @Test
+    public void shouldGetSumOnePlayedTime() {
+
+        GameStore store = new GameStore();
+
+        store.addPlayTime("Артём", 0);
+        store.addPlayTime("Елена", 1);
+        store.addPlayTime("Варвара", 0);
+
+        int actual = store.getSumPlayedTime();
+        int expected = 1;
+        assertEquals(expected, actual);
+
     }
 }

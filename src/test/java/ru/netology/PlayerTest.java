@@ -22,10 +22,10 @@ public class PlayerTest {
     // новые тесты
 
     @Test
-    public void TestSumGenreTwoGames(){
-       GameStore store = new GameStore();
+    public void TestSumGenreTwoGames() {
+        GameStore store = new GameStore();
         Game game = store.publishGame("Call of Duty", "Battle Royale");
-        Game game1 = store.publishGame("Uncharted", "Battle Royale" );
+        Game game1 = store.publishGame("Uncharted", "Battle Royale");
         Game game3 = store.publishGame("Нетология Баттл Онлайн", "Аркады");
 
         Player player = new Player("Petya");
@@ -33,9 +33,9 @@ public class PlayerTest {
         player.installGame(game1);
         player.installGame(game3);
         player.play(game, 3);
-        player.play(game1,2);
-        player.play(game3,1);
-        player.play(game1,1);
+        player.play(game1, 2);
+        player.play(game3, 1);
+        player.play(game1, 1);
 
         int expected = 6;
         int actual = player.sumGenre("Battle Royale");
@@ -46,26 +46,26 @@ public class PlayerTest {
     public void addDoubleGame() {
         GameStore store = new GameStore();
         Game game = store.publishGame("Call of Duty", "Battle Royale");
-        Game game2 = store.publishGame("Uncharted", "Battle Royale" );
+        Game game2 = store.publishGame("Uncharted", "Battle Royale");
         Game game3 = store.publishGame("Нетология Баттл Онлайн", "Аркады");
 
         Player player = new Player("Petya");
         player.installGame(game);
-        player.play(game,1);
+        player.play(game, 1);
         player.installGame(game);
         player.installGame(game3);
         player.installGame(game3);
 
         int expected = 0;
-       int actual = player.sumGenre(game3.getGenre());
-        assertEquals(expected,actual);
+        int actual = player.sumGenre(game3.getGenre());
+        assertEquals(expected, actual);
     }
 
     @Test
     public void shouldThrowRunTimeException() {
         GameStore store = new GameStore();
         Game game = store.publishGame("Call of Duty", "Battle Royale");
-        Game game1 = store.publishGame("Uncharted", "Battle Royale" );
+        Game game1 = store.publishGame("Uncharted", "Battle Royale");
         Game game3 = store.publishGame("Нетология Баттл Онлайн", "Аркады");
 
         Player player = new Player("Petya");
@@ -76,5 +76,25 @@ public class PlayerTest {
             player.play(game3, 1);
 
         });
+    }
+
+    @Test
+    public void shouldMostPlayerByGenre() {
+        GameStore store = new GameStore();
+        Game game = store.publishGame("Call of Duty", "Battle Royale");
+        Game game1 = store.publishGame("Uncharted", "Battle Royale");
+        Game game3 = store.publishGame("Нетология Баттл Онлайн", "Аркады");
+
+        Player player = new Player("Petya");
+        player.installGame(game);
+        player.installGame(game1);
+        player.installGame(game3);
+        player.play(game, 3);
+        player.play(game1, 2);
+        player.play(game3, 1);
+
+        String expected = "Call of Duty";
+        Game actual = player.mostPlayerByGenre("Battle Royale");
+        assertEquals(expected, actual);
     }
 }

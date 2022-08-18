@@ -97,4 +97,18 @@ public class PlayerTest {
         Game actual = player.mostPlayerByGenre("Battle Royale");
         assertEquals(expected, actual);
     }
+
+    @Test
+    public void addPlayGameNegativeValue() {
+        GameStore store = new GameStore();
+        Game game = store.publishGame("Нетология Баттл Онлайн", "Аркады");
+
+        Player player = new Player("Petya");
+        player.installGame(game);
+
+
+        assertThrows(Exception.class, () -> {
+            player.play(game, -1);
+        });
+    }
 }

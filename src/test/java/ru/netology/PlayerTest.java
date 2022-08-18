@@ -94,7 +94,7 @@ public class PlayerTest {
         player.play(game3, 1);
 
         String expected = "Call of Duty";
-        Game actual = player.mostPlayerByGenre("Battle Royale");
+        String actual = player.mostPlayerByGenre("Battle Royale");
         assertEquals(expected, actual);
     }
 

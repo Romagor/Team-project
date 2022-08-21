@@ -104,11 +104,30 @@ public class PlayerTest {
         Game game = store.publishGame("Нетология Баттл Онлайн", "Аркады");
 
         Player player = new Player("Petya");
-        player.installGame(game);
+
 
 
         assertThrows(Exception.class, () -> {
             player.play(game, -1);
         });
+    }
+
+    @Test
+    public void shouldMostPlayerByGenreNoInstallGame() {
+        GameStore store = new GameStore();
+        Game game = store.publishGame("Call of Duty", "Battle Royale");
+        Game game1 = store.publishGame("Uncharted", "Battle Royale");
+        Game game3 = store.publishGame("Нетология Баттл Онлайн", "Аркады");
+
+        Player player = new Player("Petya");
+        player.installGame(game);
+        player.installGame(game1);
+        player.play(game, 3);
+        player.play(game1, 2);
+
+
+        String expected = null;
+        String actual = player.mostPlayerByGenre("Аркады");
+        assertEquals(expected, actual);
     }
 }

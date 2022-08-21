@@ -102,13 +102,15 @@ public class PlayerTest {
     public void addPlayGameNegativeValue() {
         GameStore store = new GameStore();
         Game game = store.publishGame("Нетология Баттл Онлайн", "Аркады");
+        Game game1 = store.publishGame("Uncharted", "Battle Royale");
 
         Player player = new Player("Petya");
         player.installGame(game);
 
 
         assertThrows(Exception.class, () -> {
-            player.play(game, -1);
+            player.play(game1, -1);
+
         });
     }
 }

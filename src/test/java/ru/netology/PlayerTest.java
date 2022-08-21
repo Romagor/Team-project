@@ -130,4 +130,16 @@ public class PlayerTest {
         String actual = player.mostPlayerByGenre("Аркады");
         assertEquals(expected, actual);
     }
+    @Test
+    public void shouldInstallNewGame() {
+        GameStore store = new GameStore();
+        Game game = store.publishGame("Call of Duty", "Battle Royale");
+        Player player = new Player("Petya");
+        player.installGame(game);
+
+        boolean expected = true;
+        boolean actual = player.playedTime.containsKey(game);
+
+        assertEquals(expected, actual);
+    }
 }

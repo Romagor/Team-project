@@ -136,6 +136,7 @@ public class PlayerTest {
     public void shouldInstallNewGame() {
         GameStore store = new GameStore();
         Game game = store.publishGame("Call of Duty", "Battle Royale");
+
         Player player = new Player("Petya");
         player.installGame(game);
 

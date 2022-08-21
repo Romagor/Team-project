@@ -14,6 +14,17 @@ public class GameStoreTest {
         assertTrue(store.containsGame(game));
     }
     // другие ваши тесты
+
+
+     @Test
+public void shouldReturnFalseAddGames() {
+
+    GameStore store = new GameStore();
+    Game game = store.publishGame("Нетология Баттл Онлайн", "Аркады");
+    Game game2 = new Game("Дюна", "Стратегия", store);
+
+    assertFalse(store.containsGame(game2));
+}
     @Test
     public void shouldReturnFalseAddGames() {
 
@@ -91,13 +102,19 @@ public class GameStoreTest {
 
         GameStore store = new GameStore();
 
+
+        store.addPlayTime("Пётр", 1);
+
         store.addPlayTime("Пётр", 6);
         store.addPlayTime("Иван", 5);
+
 
         String actual = store.getMostPlayer();
         String expected = "Пётр";
         assertEquals(expected, actual);
     }
+
+
     @Test
     public void shouldGetMostPlayerEqualsZero() {
 
@@ -162,4 +179,5 @@ public class GameStoreTest {
         assertEquals(expected, actual);
 
     }
+
 }

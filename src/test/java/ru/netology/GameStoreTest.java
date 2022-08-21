@@ -15,16 +15,6 @@ public class GameStoreTest {
     }
     // другие ваши тесты
 
-
-     @Test
-public void shouldReturnFalseAddGames() {
-
-    GameStore store = new GameStore();
-    Game game = store.publishGame("Нетология Баттл Онлайн", "Аркады");
-    Game game2 = new Game("Дюна", "Стратегия", store);
-
-    assertFalse(store.containsGame(game2));
-}
     @Test
     public void shouldReturnFalseAddGames() {
 
@@ -101,9 +91,6 @@ public void shouldReturnFalseAddGames() {
     public void shouldGetMostPlayerEquallyOne() {
 
         GameStore store = new GameStore();
-
-
-        store.addPlayTime("Пётр", 1);
 
         store.addPlayTime("Пётр", 6);
         store.addPlayTime("Иван", 5);
